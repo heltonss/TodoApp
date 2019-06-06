@@ -1,16 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Provider } from 'react-redux';
 import './src/config/ReactotronConfig';
+import store from './src/store';
+import TodoList from './src/TodoList';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -20,3 +14,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+// eslint-disable-next-line react/prefer-stateless-function
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <TodoList />
+        </View>
+      </Provider>
+    );
+  }
+}
