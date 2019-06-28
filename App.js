@@ -1,7 +1,7 @@
+import './src/config/ReactotronConfig';
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
-import './src/config/ReactotronConfig';
 import store from './src/store';
 import TodoList from './src/TodoList';
 

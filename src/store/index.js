@@ -1,32 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import todos from './reducers/todos';
 
-const INITIAL_STATE = [
-  {
-    id: 1,
-    text: 'Fazer café',
-    completed: true,
-  }, {
-    id: 2,
-    text: 'estudar react native',
-    completed: false,
-  },
-];
-function reducer(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [...state, {
-        id: Math.random(),
-        text: action.payload.text,
-        completed: false,
-      }];
-    case 'MARK_AS_COMPLETED':
-      return state.map(todo => (todo.id === action.payload.id ? { ...todo, completed: !action.completed } : todo));
-    default:
-      return state;
-  }
-}
+const composer = __DEV__ ? compose(
+  applyMiddleware(...[]),
+  console.tron.createEnhancer(),
+)
+: applyMiddleware(...[])
 
-
-const store = createStore(reducer);
+const store = createStore(todos, composer);
 
 export default store;
